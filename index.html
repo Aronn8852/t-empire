@@ -422,6 +422,31 @@
     }
 
     /* Join section */
+
+    .steps-container {
+    margin-top: 20px;
+    background: #111; /* háttér szín a fekete témához */
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;/* zöldes fény */
+}
+
+.steps-container h3 {
+    color: #00ff88; /* zöld kiemelés */
+    margin-bottom: 10px;
+}
+
+.steps-container ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.steps-container li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+
     .join-container {
         max-width: min(800px, 95vw);
         margin: 0 auto;
@@ -1603,10 +1628,6 @@
         </div>
         <div class="server-stats">
             <div class="stat-item">
-                <div class="stat-number">Sok</div>
-                <div class="stat-label">Játékos</div>
-            </div>
-            <div class="stat-item">
                 <div class="stat-number">24/7</div>
                 <div class="stat-label">Online</div>
             </div>
@@ -1633,12 +1654,7 @@
             <div class="info-card">
                 <i class="fas fa-code-branch"></i>
                 <h3>Verzió</h3>
-                <p>1.20 és újabb</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-user-friends"></i>
-                <h3>Játékosok</h3>
-                <p>50/100 online</p>
+                <p>1.18.2 – 1.21.8</p>
             </div>
         </div>
         <div class="copy-ip">
@@ -1650,8 +1666,21 @@
                 <i class="fas fa-copy"></i> Másolás
             </button>
         </div>
+
+        <!-- Útmutató rész -->
+        <div class="steps-container">
+            <h3>Hogyan csatlakozz?</h3>
+            <ol>
+                <li>Indítsd el a Minecraftot (verzió: <strong>1.18.2 – 1.21.8</strong>).</li>
+                <li>Kattints a <strong>Többjátékos</strong> (Multiplayer) menüpontra.</li>
+                <li>Add hozzá a szervert az IP-vel: <strong>balkercraft.eu</strong>.</li>
+                <li>Lépj be, majd keresd a <strong>Realms</strong> szervereket.</li>
+                <li>Válaszd a <strong>Gyémántkard ikonú</strong> és <strong>ThornEmpire Fullpvp</strong> nevű szervert.</li>
+            </ol>
+        </div>
     </div>
 </section>
+
 
 <section id="csapattagok">
     <div class="section-title">
@@ -1660,39 +1689,24 @@
     </div>
     <div class="team-grid">
         <div class="team-member">
-            <div class="member-image" style="background-image: url('https://i.imgur.com/JqYeYnW.jpg');"></div>
+            <div class="member-image" style="background-image: url('zsolt.png');"></div>
             <div class="member-info">
-                <h3>Áron</h3>
-                <span class="member-role">Alapító & Fő Fejlesztő</span>
-                <p>Áron a szerver alapítója és fő fejlesztője. Mindig új ötletekkel áll elő, hogy fejlessze a szervert.</p>
+                <h3>Zsoltih_</h3>
+                <span class="member-role">Tulajdonos</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos, non facilis, aliquid eaque natus nostrum optio earum harum quidem voluptatem tenetur rerum eveniet? Perspiciatis vitae quia temporibus ea pariatur molestiae.</p>
                 <div class="member-social">
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="https://discord.gg/q5XVSZsDxA"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
         </div>
         <div class="team-member">
-            <div class="member-image" style="background-image: url('https://i.imgur.com/mW4XZJh.jpg');"></div>
+            <div class="member-image" style="background-image: url('sokaf.png');"></div>
             <div class="member-info">
-                <h3>Bence</h3>
+                <h3>Sokaf20</h3>
                 <span class="member-role">Admin & Közösségi Manager</span>
-                <p>Bence felelős a közösségért és a szerver zökkenőmentes működéséért. Mindig segítőkész a játékosokkal.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt praesentium, earum nam ipsam provident id, ad nulla atque sequi eum illo ratione ex numquam ipsa? Officiis eos fugit rem illum?</p>
                 <div class="member-social">
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-twitch"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="team-member">
-            <div class="member-image" style="background-image: url('https://i.imgur.com/vz5qYjF.jpg');"></div>
-            <div class="member-info">
-                <h3>Dani</h3>
-                <span class="member-role">Moderátor & Event Szervező</span>
-                <p>Dani a szerver moderátora és az események fő szervezője. Ő biztosítja, hogy mindenki jól érezze magát.</p>
-                <div class="member-social">
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/q5XVSZsDxA"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
         </div>
@@ -1706,33 +1720,12 @@
     </div>
     <div class="news-container">
         <div class="news-card">
-            <div class="news-image" style="background-image: url('https://i.imgur.com/Q6hTzFu.jpg');">
-                <span class="news-date">2025.08.10</span>
+            <div class="news-image" style="background-image: url('bg.png');">
+                <span class="news-date">2025.08.09 17:00</span>
             </div>
             <div class="news-content">
-                <h3>Új event érkezik!</h3>
-                <p>Augusztus 15-én egy különleges PvP tornával várunk mindenkit! Készülj fel az izgalmas kihívásokra és értékes nyereményekre!</p>
-                <a href="#" class="read-more">Tovább <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-        <div class="news-card">
-            <div class="news-image" style="background-image: url('https://i.imgur.com/JqYeYnW.jpg');">
-                <span class="news-date">2025.07.28</span>
-            </div>
-            <div class="news-content">
-                <h3>Frissítés: 1.20 verzió támogatás</h3>
-                <p>A szerver mostantól teljes mértékben támogatja a legújabb Minecraft 1.20 verziót. Élvezd az új funkciókat és blokkokat!</p>
-                <a href="#" class="read-more">Tovább <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-        <div class="news-card">
-            <div class="news-image" style="background-image: url('https://i.imgur.com/mW4XZJh.jpg');">
-                <span class="news-date">2025.07.15</span>
-            </div>
-            <div class="news-content">
-                <h3>Új Skyblock világ</h3>
-                <p>Egy teljesen új Skyblock világot indítottunk, ahol mindenki nulláról kezdheti a kalandját. Készülj fel az új kihívásokra!</p>
-                <a href="#" class="read-more">Tovább <i class="fas fa-arrow-right"></i></a>
+                <h3>Új season</h3>
+                <p>Season 2! 2025.08.09. 17:00-kor indul! Ne maradj le!</p>
             </div>
         </div>
     </div>
