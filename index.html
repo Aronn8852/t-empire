@@ -1870,6 +1870,38 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
 
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.onkeydown = function (e) {
+            if (
+                e.keyCode === 123 ||
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+                (e.ctrlKey && e.keyCode === 85)
+            ) {
+                return false;
+            }
+        };
+
+        console.log = function () { };
+        console.warn = function () { };
+        console.error = function () { };
+
+        (function blockDevTools() {
+            setInterval(function () {
+                const start = new Date();
+                debugger;
+                if (new Date() - start > 100) {
+                    window.location.href = "about:blank";
+                }
+            }, 1000);
+        })();
+
+        setInterval(function () {
+            if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
+                window.location.href = "about:blank";
+            }
+        }, 1000);
+
         let keySequence = '';
         let navbarClickCount = 0;
         let navbarClickTimeout = null;
