@@ -2,2424 +2,2429 @@
 <html lang="hu">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ThornEmpire - Fullpvp Minecraft Szerver">
-    <title>ThornEmpire - Fullpvp Minecraft Szerver</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Press+Start+2P&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #3498db;
-            --primary-dark: #2980b9;
-            --secondary: #3498db;
-            --dark: #121212;
-            --darker: #0a0a0a;
-            --light: #ecf0f1;
-            --gray: #7f8c8d;
-            --danger: #e74c3c;
-            --warning: #f39c12;
-            --purple: #9b59b6;
-            --success: #2ecc71;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--darker);
-            color: var(--light);
-            line-height: 1.7;
-            overflow-x: hidden;
-            position: relative;
-            width: 100%;
-            max-width: 100vw;
-        }
-
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -2;
-            background: var(--dark);
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(10, 10, 10, 0.95)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="16" height="16" x="0" y="0" fill="%233498db" opacity="0.05"/><rect width="16" height="16" x="16" y="16" fill="%233498db" opacity="0.05"/></svg>');
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 6px;
-            border: 2px solid var(--dark);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-
-        header {
-            background: rgba(18, 18, 18, 0.98);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(52, 152, 219, 0.1);
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 100vw;
-            min-height: 70px;
-        }
-
-        header.scrolled {
-            padding: 10px 5%;
-            background: rgba(10, 10, 10, 0.98);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-            max-width: 50%;
-        }
-
-        .logo h1 {
-            color: var(--primary);
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .logo-icon {
-            color: var(--primary);
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            animation: pulse 2s infinite;
-            flex-shrink: 0;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: clamp(10px, 2vw, 20px);
-            flex-wrap: wrap;
-            flex-shrink: 1;
-            overflow: hidden;
-        }
-
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: clamp(0.8rem, 2vw, 0.95rem);
-            position: relative;
-            transition: all 0.3s ease;
-            padding: 5px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 150px;
-        }
-
-        nav a::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 80px 5% 40px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(16, 16, 16, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
-            width: 100%;
-            max-width: 100vw;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('bg2.png') no-repeat center center/cover;
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: min(800px, 95vw);
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-        }
-
-        .hero h2 {
-            font-size: clamp(2rem, 8vw, 3.5rem);
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: fadeInDown 1s ease;
-            line-height: 1.2;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            word-break: break-word;
-            hyphens: auto;
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            margin-bottom: 40px;
-            color: var(--light);
-            opacity: 0.9;
-            animation: fadeInUp 1.2s ease;
-            word-break: break-word;
-            hyphens: auto;
-            max-width: 100%;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: clamp(12px, 3vw, 15px) clamp(20px, 5vw, 30px);
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1.5s ease;
-            min-width: 150px;
-            max-width: 100%;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-        }
-
-        .server-stats {
-            display: flex;
-            justify-content: center;
-            gap: clamp(15px, 4vw, 30px);
-            margin-top: 50px;
-            flex-wrap: wrap;
-            animation: fadeInUp 1.5s ease;
-            width: 100%;
-        }
-
-        .stat-item {
-            background: rgba(52, 152, 219, 0.1);
-            border: 1px solid rgba(52, 152, 219, 0.2);
-            padding: clamp(15px, 4vw, 20px) clamp(20px, 5vw, 30px);
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-            text-align: center;
-            min-width: clamp(120px, 25vw, 150px);
-            max-width: 350px;
-            transition: all 0.3s ease;
-            flex: 1 1 auto;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            background: rgba(52, 152, 219, 0.2);
-            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.1);
-        }
-
-        .stat-number {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-family: 'Press Start 2P', cursive;
-            word-break: break-all;
-        }
-
-        .stat-label {
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            color: var(--light);
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            word-break: break-word;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--light);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-
-        .scroll-down:hover {
-            opacity: 1;
-            color: var(--primary);
-        }
-
-        section {
-            padding: clamp(60px, 10vw, 100px) 5%;
-            position: relative;
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: clamp(40px, 8vw, 60px);
-            position: relative;
-            width: 100%;
-        }
-
-        .section-title h2 {
-            font-size: clamp(2rem, 6vw, 2.5rem);
-            color: var(--light);
-            margin-bottom: 15px;
-            display: inline-block;
-            position: relative;
-            word-break: break-word;
-            hyphens: auto;
-            max-width: 100%;
-        }
-
-        .section-title h2::after {
-            content: "";
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: min(700px, 95vw);
-            margin: 0 auto;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            word-break: break-word;
-            hyphens: auto;
-        }
-
-        .section-bg {
-            background:
-                linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%),
-                radial-gradient(circle at 50% 50%, rgba(52, 152, 219, 0.03) 0%, transparent 50%);
-            border-top: 1px solid rgba(52, 152, 219, 0.2);
-            border-bottom: 1px solid rgba(52, 152, 219, 0.2);
-            position: relative;
-        }
-
-        .steps-container {
-            margin-top: 20px;
-            background: #111;
-            padding: 20px;
-            border-radius: 10px;
-            color: #fff;
-        }
-
-        .steps-container h3 {
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-
-        .steps-container ol {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .steps-container li {
-            margin-bottom: 8px;
-            line-height: 1.6;
-        }
-
-        .join-container {
-            max-width: min(800px, 95vw);
-            margin: 0 auto;
-            background: rgba(18, 18, 18, 0.7);
-            border-radius: 15px;
-            padding: clamp(20px, 5vw, 40px);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(52, 152, 219, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .join-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border-color: rgba(52, 152, 219, 0.4);
-        }
-
-        .join-container p {
-            word-break: break-word;
-            hyphens: auto;
-            margin-bottom: 20px;
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-            line-height: 1.6;
-        }
-
-        .server-info {
-            display: flex;
-            justify-content: center;
-            gap: clamp(15px, 4vw, 30px);
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .info-card {
-            background: rgba(52, 152, 219, 0.05);
-            border: 1px solid rgba(52, 152, 219, 0.1);
-            padding: clamp(15px, 4vw, 20px);
-            border-radius: 10px;
-            text-align: center;
-            min-width: clamp(150px, 30vw, 200px);
-            max-width: 100%;
-            transition: all 0.3s ease;
-            flex: 1 1 auto;
-            overflow: hidden;
-        }
-
-        .info-card:hover {
-            background: rgba(52, 152, 219, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .info-card i {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .info-card h3 {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            margin-bottom: 10px;
-            color: var(--light);
-            word-break: break-word;
-        }
-
-        .info-card p {
-            color: var(--gray);
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-            word-break: break-word;
-            margin: 0;
-        }
-
-        .copy-ip {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .ip-box {
-            background: rgba(18, 18, 18, 0.8);
-            border: 1px solid rgba(52, 152, 219, 0.3);
-            padding: clamp(12px, 3vw, 15px) clamp(15px, 4vw, 20px);
-            border-radius: 50px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            color: var(--primary);
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 0;
-            flex: 1 1 auto;
-            max-width: 360px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .ip-box span {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            min-width: 0;
-        }
-
-        .copy-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: clamp(12px, 3vw, 15px) clamp(20px, 4vw, 25px);
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .copy-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .copy-btn.copied {
-            background: var(--success);
-        }
-
-        .copy-btn.copied::after {
-            content: "✓";
-            margin-left: 8px;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-            gap: clamp(20px, 4vw, 30px);
-            margin-top: 50px;
-            width: 100%;
-        }
-
-        .team-member {
-            background: rgba(18, 18, 18, 0.7);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(52, 152, 219, 0.1);
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.1);
-            border-color: rgba(52, 152, 219, 0.3);
-        }
-
-        .member-image {
-            height: clamp(150px, 25vw, 200px);
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            width: 100%;
-        }
-
-        .member-image::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 60%, rgba(10, 10, 10, 0.9) 100%);
-        }
-
-        .member-info {
-            padding: clamp(15px, 4vw, 20px);
-            text-align: center;
-            word-break: break-word;
-        }
-
-        .member-info h3 {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            margin-bottom: 5px;
-            color: var(--light);
-            word-break: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .member-role {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: inline-block;
-            padding: 5px 15px;
-            background: rgba(52, 152, 219, 0.1);
-            border-radius: 50px;
-            font-size: clamp(0.7rem, 2vw, 0.8rem);
-            word-break: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-
-        .member-info p {
-            word-break: break-word;
-            hyphens: auto;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            color: var(--gray);
-        }
-
-        .member-social {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .member-social a {
-            color: var(--gray);
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            transition: all 0.3s ease;
-        }
-
-        .member-social a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-            gap: clamp(20px, 4vw, 30px);
-            margin-top: 50px;
-            width: 100%;
-        }
-
-        .feature-card {
-            background: rgba(18, 18, 18, 0.7);
-            border-radius: 15px;
-            padding: clamp(20px, 5vw, 30px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(52, 152, 219, 0.1);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 100%;
-            word-break: break-word;
-        }
-
-        .feature-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--primary);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.1);
-            border-color: rgba(52, 152, 219, 0.3);
-        }
-
-        .feature-icon {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
-            margin-bottom: 15px;
-            color: var(--light);
-            word-break: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            margin-bottom: 20px;
-            word-break: break-word;
-            hyphens: auto;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.6;
-        }
-
-        .feature-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            word-break: break-word;
-        }
-
-        .feature-link:hover {
-            color: var(--light);
-            gap: 10px;
-        }
-
-        .news-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-            gap: clamp(20px, 4vw, 30px);
-            margin-top: 50px;
-            width: 100%;
-        }
-
-        .news-card {
-            background: linear-gradient(135deg, rgba(18, 18, 18, 0.8), rgba(15, 15, 15, 0.8));
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(52, 152, 219, 0.2);
-            width: 100%;
-            max-width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .news-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), transparent);
-            opacity: 0;
-            transition: all 0.4s ease;
-            z-index: 1;
-            border-radius: 20px;
-            backdrop-filter: blur(2px);
-        }
-
-        .news-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(52, 152, 219, 0.15);
-            border-color: rgba(52, 152, 219, 0.4);
-        }
-
-        .news-card:hover::before {
-            opacity: 1;
-        }
-
-        .news-image {
-            height: clamp(150px, 25vw, 200px);
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            width: 100%;
-        }
-
-        .news-date {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(10, 10, 10, 0.9);
-            color: var(--primary);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-size: clamp(0.7rem, 1.8vw, 0.8rem);
-            font-weight: 600;
-            white-space: nowrap;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(52, 152, 219, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .news-content {
-            padding: clamp(20px, 4vw, 25px);
-            word-break: break-word;
-            position: relative;
-            z-index: 2;
-        }
-
-        .news-content h3 {
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
-            margin-bottom: 15px;
-            color: var(--light);
-            word-break: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 1.3;
-        }
-
-        .news-content p {
-            color: var(--gray);
-            margin-bottom: 20px;
-            word-break: break-word;
-            hyphens: auto;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.6;
-        }
-
-        .read-more {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
-
-        .read-more:hover {
-            color: var(--light);
-            gap: 10px;
-        }
-
-        .faq-container {
-            max-width: min(800px, 95vw);
-            margin: 50px auto 0;
-            width: 100%;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(52, 152, 219, 0.1);
-            background: rgba(18, 18, 18, 0.7);
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .faq-item.active {
-            border-color: rgba(52, 152, 219, 0.3);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
-        }
-
-        .faq-question {
-            padding: clamp(15px, 4vw, 20px) clamp(20px, 5vw, 25px);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: var(--light);
-            transition: all 0.3s ease;
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-            word-break: break-word;
-            gap: 15px;
-        }
-
-        .faq-question:hover {
-            color: var(--primary);
-        }
-
-        .faq-question::after {
-            content: "+";
-            font-size: 1.5rem;
-            color: var(--primary);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .faq-item.active .faq-question::after {
-            content: "-";
-        }
-
-        .faq-answer {
-            padding: 0 clamp(20px, 5vw, 25px);
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            color: var(--gray);
-            word-break: break-word;
-            hyphens: auto;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 0 clamp(20px, 5vw, 25px) clamp(15px, 4vw, 20px);
-            max-height: 1000px;
-        }
-
-        .faq-answer p {
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .faq-answer ol {
-            padding-left: 20px;
-            margin-bottom: 10px;
-        }
-
-        .faq-answer li {
-            margin-bottom: 5px;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            word-break: break-word;
-        }
-
-        .faq-answer a {
-            word-break: break-all;
-            overflow-wrap: break-word;
-        }
-
-        .rules-container {
-            max-width: min(800px, 95vw);
-            margin: 50px auto 0;
-            background: rgba(18, 18, 18, 0.7);
-            border-radius: 15px;
-            padding: clamp(25px, 5vw, 40px);
-            border: 1px solid rgba(52, 152, 219, 0.1);
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .rules-list {
-            list-style-type: none;
-            width: 100%;
-        }
-
-        .rules-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            color: var(--gray);
-            word-break: break-word;
-            hyphens: auto;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.6;
-        }
-
-        .rules-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-            top: 0;
-        }
-
-        .rules-list li.warning::before {
-            content: "!";
-            color: var(--warning);
-        }
-
-        .rules-list li.danger::before {
-            content: "✗";
-            color: var(--danger);
-        }
-
-        footer {
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(18, 18, 18, 0.98) 100%);
-            padding: clamp(40px, 8vw, 60px) 5% clamp(20px, 4vw, 30px);
-            border-top: 1px solid rgba(52, 152, 219, 0.1);
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
-            gap: clamp(25px, 5vw, 40px);
-            margin-bottom: clamp(25px, 5vw, 40px);
-            width: 100%;
-        }
-
-        .footer-column {
-            word-break: break-word;
-            overflow: hidden;
-        }
-
-        .footer-column h3 {
-            color: var(--light);
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-            word-break: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .footer-column h3::after {
-            content: "";
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background: var(--primary);
-            bottom: 0;
-            left: 0;
-        }
-
-        .footer-column p {
-            word-break: break-word;
-            hyphens: auto;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.6;
-        }
-
-        .footer-links {
-            list-style-type: none;
-            width: 100%;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            word-break: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            padding-left: 5px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-social a {
-            color: var(--gray);
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: clamp(20px, 4vw, 30px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--gray);
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            word-break: break-word;
-            hyphens: auto;
-        }
-
-        .footer-bottom a {
-            color: var(--primary);
-            text-decoration: none;
-            word-break: break-all;
-        }
-
-        .countdown-container {
-            max-width: min(800px, 95vw);
-            margin: 40px auto;
-            text-align: center;
-            background: rgba(18, 18, 18, 0.7);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid rgba(52, 152, 219, 0.2);
-        }
-
-        .countdown-title {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            background: rgba(52, 152, 219, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            min-width: 80px;
-        }
-
-        .countdown-number {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: var(--primary);
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        .countdown-label {
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            color: var(--light);
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-
-        .server-status {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 10px 15px;
-            border-radius: 50px;
-            background: rgba(46, 204, 113, 0.1);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            max-width: 200px;
-            margin: 20px auto;
-        }
-
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--success);
-            animation: pulse 2s infinite;
-        }
-
-        .status-text {
-            color: var(--success);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .server-offline {
-            background: rgba(231, 76, 60, 0.1);
-            border: 1px solid rgba(231, 76, 60, 0.3);
-        }
-
-        .server-offline .status-indicator {
-            background: var(--danger);
-        }
-
-        .server-offline .status-text {
-            color: var(--danger);
-        }
-
-        .discord-widget {
-            margin-top: 30px;
-            background: rgba(88, 101, 242, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid rgba(88, 101, 242, 0.2);
-            text-align: center;
-        }
-
-        .discord-widget h3 {
-            color: #7289da;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .discord-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #7289da;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-        }
-
-        .discord-btn:hover {
-            background: #5b6eae;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(114, 137, 218, 0.3);
-        }
-
-        .player-count {
-            font-family: 'Press Start 2P', cursive;
-            color: var(--primary);
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            margin-top: 10px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.05);
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0) translateX(-50%);
-            }
-
-            40% {
-                transform: translateY(-20px) translateX(-50%);
-            }
-
-            60% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-        }
-
-        @keyframes bgMove {
-            0% {
-                background-position: 0 0;
-            }
-
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        @keyframes typing {
-            from {
-                width: 0
-            }
-
-            to {
-                width: 100%
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                border-color: transparent
-            }
-        }
-
-        @media (max-width: 1200px) {
-            header {
-                padding: 12px 4%;
-            }
-
-            .logo h1 {
-                font-size: 1.6rem;
-            }
-
-            nav a {
-                font-size: 0.9rem;
-                padding: 4px 0;
-            }
-        }
-
-        @media (max-width: 992px) {
-            header {
-                padding: 10px 3%;
-            }
-
-            .hero h2 {
-                font-size: 2.8rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-
-            .server-stats {
-                gap: 20px;
-            }
-
-            .stat-item {
-                min-width: 140px;
-                padding: 18px 25px;
-            }
-
-            .features-container {
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            }
-
-            .news-container {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-
-            .team-grid {
-                grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 12px 4%;
-                flex-wrap: nowrap;
-            }
-
-            .logo {
-                max-width: 60%;
-            }
-
-            .logo h1 {
-                font-size: 1.4rem;
-            }
-
-            nav {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                gap: 15px;
-                clip-path: circle(0% at 50% 0);
-                transition: all 0.5s ease;
-                z-index: 999;
-                border-bottom: 1px solid rgba(52, 152, 219, 0.1);
-                max-width: 100vw;
-                overflow-x: hidden;
-            }
-
-            nav.active {
-                clip-path: circle(100% at 50% 50%);
-            }
-
-            nav a {
-                font-size: 1rem;
-                max-width: 80%;
-                text-align: center;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero {
-                padding: 100px 4% 60px;
-            }
-
-            .hero h2 {
-                font-size: 2.2rem;
-                margin-bottom: 15px;
-            }
-
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 30px;
-            }
-
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                padding: 14px 25px;
-            }
-
-            .server-stats {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                margin-top: 40px;
-            }
-
-            .stat-item {
-                width: 100%;
-                max-width: 200px;
-                min-width: auto;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 60px 4%;
-            }
-
-            .join-container {
-                padding: 25px 20px;
-            }
-
-            .server-info {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .info-card {
-                min-width: auto;
-                width: 100%;
-            }
-
-            .copy-ip {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .ip-box {
-                width: 100%;
-                max-width: none;
-                justify-content: center;
-            }
-
-            .copy-btn {
-                width: 100%;
-                max-width: 250px;
-            }
-
-            .features-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .news-container {
-                grid-template-columns: 1fr;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .countdown {
-                gap: 10px;
-            }
-
-            .countdown-item {
-                min-width: 70px;
-                padding: 10px;
-            }
-
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            header {
-                padding: 10px 3%;
-                min-height: 60px;
-            }
-
-            .logo h1 {
-                font-size: 1.2rem;
-            }
-
-            .logo-icon {
-                font-size: 1.2rem;
-            }
-
-            nav {
-                top: 60px;
-                padding: 15px 0;
-            }
-
-            .hero {
-                padding: 80px 3% 40px;
-                min-height: 90vh;
-            }
-
-            .hero h2 {
-                font-size: 1.8rem;
-                margin-bottom: 12px;
-            }
-
-            .hero p {
-                font-size: 0.95rem;
-                margin-bottom: 25px;
-            }
-
-            .server-stats {
-                gap: 12px;
-                margin-top: 30px;
-            }
-
-            .stat-item {
-                padding: 12px 15px;
-                max-width: 160px;
-            }
-
-            .stat-number {
-                font-size: 1.6rem;
-            }
-
-            .stat-label {
-                font-size: 0.7rem;
-            }
-
-            .section-title h2 {
-                font-size: 1.7rem;
-            }
-
-            .section-title p {
-                font-size: 0.95rem;
-            }
-
-            section {
-                padding: 50px 3%;
-            }
-
-            .join-container {
-                padding: 20px 15px;
-            }
-
-            .info-card {
-                padding: 15px;
-            }
-
-            .info-card i {
-                font-size: 1.5rem;
-            }
-
-            .info-card h3 {
-                font-size: 1rem;
-            }
-
-            .copy-ip {
-                margin-top: 20px;
-            }
-
-            .ip-box {
-                padding: 10px 15px;
-                font-size: 0.7rem;
-            }
-
-            .copy-btn {
-                padding: 10px 20px;
-                font-size: 0.85rem;
-            }
-
-            .feature-card {
-                padding: 20px 15px;
-            }
-
-            .feature-icon {
-                font-size: 2rem;
-            }
-
-            .news-image {
-                height: 140px;
-            }
-
-            .news-date {
-                font-size: 0.7rem;
-                padding: 6px 12px;
-            }
-
-            .member-image {
-                height: 140px;
-            }
-
-            .member-role {
-                font-size: 0.7rem;
-                padding: 4px 10px;
-            }
-
-            .faq-question {
-                padding: 15px 18px;
-                font-size: 0.9rem;
-            }
-
-            .faq-answer {
-                padding: 0 18px;
-            }
-
-            .faq-item.active .faq-answer {
-                padding: 0 18px 15px;
-            }
-
-            .rules-container {
-                padding: 20px 18px;
-            }
-
-            .rules-list li {
-                font-size: 0.9rem;
-                padding-left: 25px;
-            }
-
-            footer {
-                padding: 40px 3% 20px;
-            }
-
-            .footer-content {
-                gap: 25px;
-            }
-
-            .footer-column h3 {
-                font-size: 1.1rem;
-            }
-
-            .footer-links a {
-                font-size: 0.9rem;
-            }
-
-            .footer-bottom {
-                font-size: 0.8rem;
-            }
-
-            .countdown-item {
-                min-width: 60px;
-                padding: 8px;
-            }
-
-            .countdown-number {
-                font-size: 1.2rem;
-            }
-
-            .countdown-label {
-                font-size: 0.6rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .logo h1 {
-                font-size: 1.1rem;
-            }
-
-            .hero h2 {
-                font-size: 1.6rem;
-            }
-
-            .btn {
-                font-size: 0.9rem;
-                padding: 12px 20px;
-            }
-
-            .stat-number {
-                font-size: 1.4rem;
-            }
-
-            .ip-box {
-                font-size: 0.65rem;
-            }
-
-            .section-title h2 {
-                font-size: 1.5rem;
-            }
-
-            .countdown-item {
-                min-width: 50px;
-                padding: 5px;
-            }
-
-            .countdown-number {
-                font-size: 1rem;
-            }
-        }
-
-        @media print {
-            * {
-                color: black !important;
-                background: white !important;
-            }
-
-            #particles-js,
-            .mobile-menu-btn,
-            .scroll-down {
-                display: none !important;
-            }
-
-            body::before {
-                display: none !important;
-            }
-
-            header {
-                position: static !important;
-                background: white !important;
-                border-bottom: 1px solid black !important;
-            }
-
-            section {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-        }
-
-        @media (prefers-contrast: high) {
-            :root {
-                --primary: #0000ff;
-                --light: #ffffff;
-                --gray: #cccccc;
-                --dark: #000000;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ThornEmpire - Fullpvp Minecraft Szerver">
+  <title>ThornEmpire - Fullpvp Minecraft Szerver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Press+Start+2P&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3498db;
+      --primary-dark: #2980b9;
+      --secondary: #3498db;
+      --dark: #121212;
+      --darker: #0a0a0a;
+      --light: #ecf0f1;
+      --gray: #7f8c8d;
+      --danger: #e74c3c;
+      --warning: #f39c12;
+      --purple: #9b59b6;
+      --success: #2ecc71;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -2;
+      background: var(--dark);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(10, 10, 10, 0.95)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="16" height="16" x="0" y="0" fill="%233498db" opacity="0.05"/><rect width="16" height="16" x="16" y="16" fill="%233498db" opacity="0.05"/></svg>');
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 6px;
+      border: 2px solid var(--dark);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+
+    header {
+      background: rgba(18, 18, 18, 0.98);
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 100vw;
+      min-height: 70px;
+    }
+
+    header.scrolled {
+      padding: 10px 5%;
+      background: rgba(10, 10, 10, 0.98);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      max-width: 50%;
+    }
+
+    .logo h1 {
+      color: var(--primary);
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .logo-icon {
+      color: var(--primary);
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 2vw, 20px);
+      flex-wrap: wrap;
+      flex-shrink: 1;
+      overflow: hidden;
+    }
+
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 5% 40px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(16, 16, 16, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('bg2.png') no-repeat center center/cover;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: min(800px, 95vw);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .hero h2 {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      margin-bottom: 20px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: fadeInDown 1s ease;
+      line-height: 1.2;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      margin-bottom: 40px;
+      color: var(--light);
+      opacity: 0.9;
+      animation: fadeInUp 1.2s ease;
+      word-break: break-word;
+      hyphens: auto;
+      max-width: 100%;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: clamp(12px, 3vw, 15px) clamp(20px, 5vw, 30px);
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease;
+      min-width: 150px;
+      max-width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+    }
+
+    .server-stats {
+      display: flex;
+      justify-content: center;
+      gap: clamp(15px, 4vw, 30px);
+      margin-top: 50px;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.5s ease;
+      width: 100%;
+    }
+
+    .stat-item {
+      background: rgba(52, 152, 219, 0.1);
+      border: 1px solid rgba(52, 152, 219, 0.2);
+      padding: clamp(15px, 4vw, 20px) clamp(20px, 5vw, 30px);
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+      text-align: center;
+      min-width: clamp(120px, 25vw, 150px);
+      max-width: 350px;
+      transition: all 0.3s ease;
+      flex: 1 1 auto;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      background: rgba(52, 152, 219, 0.2);
+      box-shadow: 0 10px 20px rgba(52, 152, 219, 0.1);
+    }
+
+    .stat-number {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-family: 'Press Start 2P', cursive;
+      word-break: break-all;
+    }
+
+    .stat-label {
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      color: var(--light);
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      word-break: break-word;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--light);
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .scroll-down:hover {
+      opacity: 1;
+      color: var(--primary);
+    }
+
+    section {
+      padding: clamp(60px, 10vw, 100px) 5%;
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: clamp(40px, 8vw, 60px);
+      position: relative;
+      width: 100%;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 6vw, 2.5rem);
+      color: var(--light);
+      margin-bottom: 15px;
+      display: inline-block;
+      position: relative;
+      word-break: break-word;
+      hyphens: auto;
+      max-width: 100%;
+    }
+
+    .section-title h2::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title p {
+      color: var(--gray);
+      max-width: min(700px, 95vw);
+      margin: 0 auto;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .section-bg {
+      background:
+        linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%),
+        radial-gradient(circle at 50% 50%, rgba(52, 152, 219, 0.03) 0%, transparent 50%);
+      border-top: 1px solid rgba(52, 152, 219, 0.2);
+      border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+      position: relative;
+    }
+
+    .steps-container {
+      margin-top: 20px;
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .steps-container h3 {
+      color: #3498db;
+      margin-bottom: 10px;
+    }
+
+    .steps-container ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .steps-container li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .join-container {
+      max-width: min(800px, 95vw);
+      margin: 0 auto;
+      background: rgba(18, 18, 18, 0.7);
+      border-radius: 15px;
+      padding: clamp(20px, 5vw, 40px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(52, 152, 219, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .join-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      border-color: rgba(52, 152, 219, 0.4);
+    }
+
+    .join-container p {
+      word-break: break-word;
+      hyphens: auto;
+      margin-bottom: 20px;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      line-height: 1.6;
+    }
+
+    .server-info {
+      display: flex;
+      justify-content: center;
+      gap: clamp(15px, 4vw, 30px);
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .info-card {
+      background: rgba(52, 152, 219, 0.05);
+      border: 1px solid rgba(52, 152, 219, 0.1);
+      padding: clamp(15px, 4vw, 20px);
+      border-radius: 10px;
+      text-align: center;
+      min-width: clamp(150px, 30vw, 200px);
+      max-width: 100%;
+      transition: all 0.3s ease;
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+
+    .info-card:hover {
+      background: rgba(52, 152, 219, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .info-card i {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .info-card h3 {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 10px;
+      color: var(--light);
+      word-break: break-word;
+    }
+
+    .info-card p {
+      color: var(--gray);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      word-break: break-word;
+      margin: 0;
+    }
+
+    .copy-ip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .ip-box {
+      background: rgba(18, 18, 18, 0.8);
+      border: 1px solid rgba(52, 152, 219, 0.3);
+      padding: clamp(12px, 3vw, 15px) clamp(15px, 4vw, 20px);
+      border-radius: 50px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      color: var(--primary);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1 1 auto;
+      max-width: 360px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ip-box span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+
+    .copy-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: clamp(12px, 3vw, 15px) clamp(20px, 4vw, 25px);
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .copy-btn.copied {
+      background: var(--success);
+    }
+
+    .copy-btn.copied::after {
+      content: "✓";
+      margin-left: 8px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+      gap: clamp(20px, 4vw, 30px);
+      margin-top: 50px;
+      width: 100%;
+    }
+
+    .team-member {
+      background: rgba(18, 18, 18, 0.7);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(52, 152, 219, 0.1);
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(52, 152, 219, 0.1);
+      border-color: rgba(52, 152, 219, 0.3);
+    }
+
+    .member-image {
+      height: clamp(150px, 25vw, 200px);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      width: 100%;
+    }
+
+    .member-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 60%, rgba(10, 10, 10, 0.9) 100%);
+    }
+
+    .member-info {
+      padding: clamp(15px, 4vw, 20px);
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .member-info h3 {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      margin-bottom: 5px;
+      color: var(--light);
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .member-role {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: inline-block;
+      padding: 5px 15px;
+      background: rgba(52, 152, 219, 0.1);
+      border-radius: 50px;
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .member-info p {
+      word-break: break-word;
+      hyphens: auto;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      color: var(--gray);
+    }
+
+    .member-social {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .member-social a {
+      color: var(--gray);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      transition: all 0.3s ease;
+    }
+
+    .member-social a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: clamp(20px, 4vw, 30px);
+      margin-top: 50px;
+      width: 100%;
+    }
+
+    .feature-card {
+      background: rgba(18, 18, 18, 0.7);
+      border-radius: 15px;
+      padding: clamp(20px, 5vw, 30px);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(52, 152, 219, 0.1);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(52, 152, 219, 0.1);
+      border-color: rgba(52, 152, 219, 0.3);
+    }
+
+    .feature-icon {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: clamp(1.2rem, 3vw, 1.4rem);
+      margin-bottom: 15px;
+      color: var(--light);
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .feature-card p {
+      color: var(--gray);
+      margin-bottom: 20px;
+      word-break: break-word;
+      hyphens: auto;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 1.6;
+    }
+
+    .feature-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s ease;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      word-break: break-word;
+    }
+
+    .feature-link:hover {
+      color: var(--light);
+      gap: 10px;
+    }
+
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: clamp(20px, 4vw, 30px);
+      margin-top: 50px;
+      width: 100%;
+    }
+
+    .news-card {
+      background: linear-gradient(135deg, rgba(18, 18, 18, 0.8), rgba(15, 15, 15, 0.8));
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(52, 152, 219, 0.2);
+      width: 100%;
+      max-width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .news-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), transparent);
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
+    }
+
+    .news-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(52, 152, 219, 0.15);
+      border-color: rgba(52, 152, 219, 0.4);
+    }
+
+    .news-card:hover::before {
+      opacity: 1;
+    }
+
+    .news-image {
+      height: clamp(150px, 25vw, 200px);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      width: 100%;
+    }
+
+    .news-date {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(10, 10, 10, 0.9);
+      color: var(--primary);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+      font-weight: 600;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(52, 152, 219, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .news-content {
+      padding: clamp(20px, 4vw, 25px);
+      word-break: break-word;
+      position: relative;
+      z-index: 2;
+    }
+
+    .news-content h3 {
+      font-size: clamp(1.2rem, 3vw, 1.4rem);
+      margin-bottom: 15px;
+      color: var(--light);
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+    }
+
+    .news-content p {
+      color: var(--gray);
+      margin-bottom: 20px;
+      word-break: break-word;
+      hyphens: auto;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 1.6;
+    }
+
+    .read-more {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s ease;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    .read-more:hover {
+      color: var(--light);
+      gap: 10px;
+    }
+
+    .faq-container {
+      max-width: min(800px, 95vw);
+      margin: 50px auto 0;
+      width: 100%;
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(52, 152, 219, 0.1);
+      background: rgba(18, 18, 18, 0.7);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .faq-item.active {
+      border-color: rgba(52, 152, 219, 0.3);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
+    }
+
+    .faq-question {
+      padding: clamp(15px, 4vw, 20px) clamp(20px, 5vw, 25px);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--light);
+      transition: all 0.3s ease;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      word-break: break-word;
+      gap: 15px;
+    }
+
+    .faq-question:hover {
+      color: var(--primary);
+    }
+
+    .faq-question::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--primary);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: "-";
+    }
+
+    .faq-answer {
+      padding: 0 clamp(20px, 5vw, 25px);
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: var(--gray);
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 clamp(20px, 5vw, 25px) clamp(15px, 4vw, 20px);
+      max-height: 1000px;
+    }
+
+    .faq-answer p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .faq-answer ol {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .faq-answer li {
+      margin-bottom: 5px;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      word-break: break-word;
+    }
+
+    .faq-answer a {
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
+
+    .rules-container {
+      max-width: min(800px, 95vw);
+      margin: 50px auto 0;
+      background: rgba(18, 18, 18, 0.7);
+      border-radius: 15px;
+      padding: clamp(25px, 5vw, 40px);
+      border: 1px solid rgba(52, 152, 219, 0.1);
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .rules-list {
+      list-style-type: none;
+      width: 100%;
+    }
+
+    .rules-list li {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      color: var(--gray);
+      word-break: break-word;
+      hyphens: auto;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 1.6;
+    }
+
+    .rules-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+      top: 0;
+    }
+
+    .rules-list li.warning::before {
+      content: "!";
+      color: var(--warning);
+    }
+
+    .rules-list li.danger::before {
+      content: "✗";
+      color: var(--danger);
+    }
+
+    footer {
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(18, 18, 18, 0.98) 100%);
+      padding: clamp(40px, 8vw, 60px) 5% clamp(20px, 4vw, 30px);
+      border-top: 1px solid rgba(52, 152, 219, 0.1);
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: clamp(25px, 5vw, 40px);
+      margin-bottom: clamp(25px, 5vw, 40px);
+      width: 100%;
+    }
+
+    .footer-column {
+      word-break: break-word;
+      overflow: hidden;
+    }
+
+    .footer-column h3 {
+      color: var(--light);
+      font-size: clamp(1.1rem, 3vw, 1.3rem);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .footer-column h3::after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+      bottom: 0;
+      left: 0;
+    }
+
+    .footer-column p {
+      word-break: break-word;
+      hyphens: auto;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      list-style-type: none;
+      width: 100%;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-social a {
+      color: var(--gray);
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: clamp(20px, 4vw, 30px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--gray);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .footer-bottom a {
+      color: var(--primary);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .countdown-container {
+      max-width: min(800px, 95vw);
+      margin: 40px auto;
+      text-align: center;
+      background: rgba(18, 18, 18, 0.7);
+      border-radius: 15px;
+      padding: 30px;
+      border: 1px solid rgba(52, 152, 219, 0.2);
+    }
+
+    .countdown-title {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      background: rgba(52, 152, 219, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+      min-width: 80px;
+    }
+
+    .countdown-number {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--primary);
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    .countdown-label {
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      color: var(--light);
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .server-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 10px 15px;
+      border-radius: 50px;
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+      max-width: 200px;
+      margin: 20px auto;
+    }
+
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    .status-text {
+      color: var(--success);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .server-offline {
+      background: rgba(231, 76, 60, 0.1);
+      border: 1px solid rgba(231, 76, 60, 0.3);
+    }
+
+    .server-offline .status-indicator {
+      background: var(--danger);
+    }
+
+    .server-offline .status-text {
+      color: var(--danger);
+    }
+
+    .discord-widget {
+      margin-top: 30px;
+      background: rgba(88, 101, 242, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(88, 101, 242, 0.2);
+      text-align: center;
+    }
+
+    .discord-widget h3 {
+      color: #7289da;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #7289da;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+    }
+
+    .discord-btn:hover {
+      background: #5b6eae;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(114, 137, 218, 0.3);
+    }
+
+    .player-count {
+      font-family: 'Press Start 2P', cursive;
+      color: var(--primary);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0) translateX(-50%);
+      }
+
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    @keyframes bgMove {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent
+      }
+    }
+
+    @media (max-width: 1200px) {
+      header {
+        padding: 12px 4%;
+      }
+
+      .logo h1 {
+        font-size: 1.6rem;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+        padding: 4px 0;
+      }
+    }
+
+    @media (max-width: 992px) {
+      header {
+        padding: 10px 3%;
+      }
+
+      .hero h2 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+
+      .server-stats {
+        gap: 20px;
+      }
+
+      .stat-item {
+        min-width: 140px;
+        padding: 18px 25px;
+      }
+
+      .features-container {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .news-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 12px 4%;
+        flex-wrap: nowrap;
+      }
+
+      .logo {
+        max-width: 60%;
+      }
+
+      .logo h1 {
+        font-size: 1.4rem;
+      }
+
+      nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 15px;
+        clip-path: circle(0% at 50% 0);
+        transition: all 0.5s ease;
+        z-index: 999;
+        border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      nav.active {
+        clip-path: circle(100% at 50% 50%);
+      }
+
+      nav a {
+        font-size: 1rem;
+        max-width: 80%;
+        text-align: center;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 100px 4% 60px;
+      }
+
+      .hero h2 {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 25px;
+      }
+
+      .server-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 40px;
+      }
+
+      .stat-item {
+        width: 100%;
+        max-width: 200px;
+        min-width: auto;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 60px 4%;
+      }
+
+      .join-container {
+        padding: 25px 20px;
+      }
+
+      .server-info {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .info-card {
+        min-width: auto;
+        width: 100%;
+      }
+
+      .copy-ip {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .ip-box {
+        width: 100%;
+        max-width: none;
+        justify-content: center;
+      }
+
+      .copy-btn {
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .features-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .news-container {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .countdown {
+        gap: 10px;
+      }
+
+      .countdown-item {
+        min-width: 70px;
+        padding: 10px;
+      }
+
+      .countdown-number {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header {
+        padding: 10px 3%;
+        min-height: 60px;
+      }
+
+      .logo h1 {
+        font-size: 1.2rem;
+      }
+
+      .logo-icon {
+        font-size: 1.2rem;
+      }
+
+      nav {
+        top: 60px;
+        padding: 15px 0;
+      }
+
+      .hero {
+        padding: 80px 3% 40px;
+        min-height: 90vh;
+      }
+
+      .hero h2 {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+      }
+
+      .server-stats {
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .stat-item {
+        padding: 12px 15px;
+        max-width: 160px;
+      }
+
+      .stat-number {
+        font-size: 1.6rem;
+      }
+
+      .stat-label {
+        font-size: 0.7rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.7rem;
+      }
+
+      .section-title p {
+        font-size: 0.95rem;
+      }
+
+      section {
+        padding: 50px 3%;
+      }
+
+      .join-container {
+        padding: 20px 15px;
+      }
+
+      .info-card {
+        padding: 15px;
+      }
+
+      .info-card i {
+        font-size: 1.5rem;
+      }
+
+      .info-card h3 {
+        font-size: 1rem;
+      }
+
+      .copy-ip {
+        margin-top: 20px;
+      }
+
+      .ip-box {
+        padding: 10px 15px;
+        font-size: 0.7rem;
+      }
+
+      .copy-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+      }
+
+      .feature-card {
+        padding: 20px 15px;
+      }
+
+      .feature-icon {
+        font-size: 2rem;
+      }
+
+      .news-image {
+        height: 140px;
+      }
+
+      .news-date {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+      }
+
+      .member-image {
+        height: 140px;
+      }
+
+      .member-role {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+      }
+
+      .faq-question {
+        padding: 15px 18px;
+        font-size: 0.9rem;
+      }
+
+      .faq-answer {
+        padding: 0 18px;
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 0 18px 15px;
+      }
+
+      .rules-container {
+        padding: 20px 18px;
+      }
+
+      .rules-list li {
+        font-size: 0.9rem;
+        padding-left: 25px;
+      }
+
+      footer {
+        padding: 40px 3% 20px;
+      }
+
+      .footer-content {
+        gap: 25px;
+      }
+
+      .footer-column h3 {
+        font-size: 1.1rem;
+      }
+
+      .footer-links a {
+        font-size: 0.9rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.8rem;
+      }
+
+      .countdown-item {
+        min-width: 60px;
+        padding: 8px;
+      }
+
+      .countdown-number {
+        font-size: 1.2rem;
+      }
+
+      .countdown-label {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .logo h1 {
+        font-size: 1.1rem;
+      }
+
+      .hero h2 {
+        font-size: 1.6rem;
+      }
+
+      .btn {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+
+      .stat-number {
+        font-size: 1.4rem;
+      }
+
+      .ip-box {
+        font-size: 0.65rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.5rem;
+      }
+
+      .countdown-item {
+        min-width: 50px;
+        padding: 5px;
+      }
+
+      .countdown-number {
+        font-size: 1rem;
+      }
+    }
+
+    @media print {
+      * {
+        color: black !important;
+        background: white !important;
+      }
+
+      #particles-js,
+      .mobile-menu-btn,
+      .scroll-down {
+        display: none !important;
+      }
+
+      body::before {
+        display: none !important;
+      }
+
+      header {
+        position: static !important;
+        background: white !important;
+        border-bottom: 1px solid black !important;
+      }
+
+      section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+
+    @media (prefers-contrast: high) {
+      :root {
+        --primary: #0000ff;
+        --light: #ffffff;
+        --gray: #cccccc;
+        --dark: #000000;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div id="particles-js"></div>
+  <div id="particles-js"></div>
 
-    <header>
-        <div class="logo">
-            <i class="fas fa-crown logo-icon"></i>
-            <h1>ThornEmpire</h1>
+  <header>
+    <div class="logo">
+      <i class="fas fa-crown logo-icon"></i>
+      <h1>ThornEmpire</h1>
+    </div>
+    <nav id="mainNav">
+      <a href="#home"><i class="fas fa-home"></i> Kezdőlap</a>
+      <a href="#eotw"><i class="fas fa-trophy"></i> EOTW</a>
+      <a href="#csatlakozas"><i class="fas fa-plug"></i> Csatlakozás</a>
+      <a href="https://bolt.thornempire.hu"><i class="fas fa-shop"></i> Bolt</a>
+      <a href="#csapattagok"><i class="fas fa-users"></i> Csapattagok</a>
+      <a href="#hirek"><i class="fas fa-newspaper"></i> Hírek</a>
+      <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+      <a href="#szabalyzat"><i class="fas fa-gavel"></i> Szabályzat</a>
+    </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h2>Fedezd fel a ThornEmpire szerverét!</h2>
+      <p>Csatlakozz Magyarország egyik legizgalmasabb Minecraft FullPvP közösségéhez!</p>
+      <div class="btn-group">
+        <a href="#csatlakozas" class="btn btn-primary">
+          <i class="fas fa-plug"></i> Csatlakozz most!
+        </a>
+        <a href="https://dc.thornempire.hu" class="btn btn-secondary">
+          <i class="fab fa-discord"></i> Discord Szerver
+        </a>
+      </div>
+      <div class="server-stats">
+        <div class="stat-item">
+          <div class="stat-number">0/24</div>
+          <div class="stat-label">Online</div>
         </div>
-        <nav id="mainNav">
-            <a href="#home"><i class="fas fa-home"></i> Kezdőlap</a>
-            <a href="#eotw"><i class="fas fa-trophy"></i> EOTW</a>
-            <a href="#csatlakozas"><i class="fas fa-plug"></i> Csatlakozás</a>
-            <a href="https://bolt.thornempire.hu"><i class="fas fa-shop"></i> Bolt</a>
-            <a href="#csapattagok"><i class="fas fa-users"></i> Csapattagok</a>
-            <a href="#hirek"><i class="fas fa-newspaper"></i> Hírek</a>
-            <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
-            <a href="#szabalyzat"><i class="fas fa-gavel"></i> Szabályzat</a>
-        </nav>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
+        <div class="stat-item">
+          <div class="stat-number" id="playerCount">0</div>
+          <div class="stat-label">Játékos online</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1.18.2+</div>
+          <div class="stat-label">Verzió</div>
+        </div>
+      </div>
+      <div class="server-status">
+        <div class="status-indicator"></div>
+        <div class="status-text">Szerver online</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="csatlakozas" class="section-bg">
+    <div class="section-title">
+      <h2>Csatlakozás a szerverhez</h2>
+      <p>Kövesd az alábbi lépéseket, hogy csatlakozhass a ThornEmpire közösségéhez</p>
+    </div>
+    <div class="join-container">
+      <div class="server-info">
+        <div class="info-card">
+          <i class="fas fa-server"></i>
+          <h3>Szerver IP</h3>
+          <p>play.thornempire.hu</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-code-branch"></i>
+          <h3>Verzió</h3>
+          <p>1.18.2 – 1.21.8</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-users"></i>
+          <h3>Játékosok</h3>
+          <p><span id="serverPlayerCount">0</span>/80</p>
+        </div>
+      </div>
+      <div class="copy-ip">
+        <div class="ip-box">
+          <i class="fas fa-copy"></i>
+          <span>play.thornempire.hu</span>
+        </div>
+        <button class="copy-btn" id="copyBtn">
+          <i class="fas fa-copy"></i> Másolás
         </button>
-    </header>
+      </div>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>Fedezd fel a ThornEmpire szerverét!</h2>
-            <p>Csatlakozz Magyarország egyik legizgalmasabb Minecraft FullPvP közösségéhez!</p>
-            <div class="btn-group">
-                <a href="#csatlakozas" class="btn btn-primary">
-                    <i class="fas fa-plug"></i> Csatlakozz most!
-                </a>
-                <a href="https://dc.thornempire.hu" class="btn btn-secondary">
-                    <i class="fab fa-discord"></i> Discord Szerver
-                </a>
-            </div>
-            <div class="server-stats">
-                <div class="stat-item">
-                    <div class="stat-number">0/24</div>
-                    <div class="stat-label">Online</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="playerCount">0</div>
-                    <div class="stat-label">Játékos online</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">1.18.2+</div>
-                    <div class="stat-label">Verzió</div>
-                </div>
-            </div>
-            <div class="server-status">
-                <div class="status-indicator"></div>
-                <div class="status-text">Szerver online</div>
-            </div>
+      <div class="steps-container">
+        <h3>Hogyan csatlakozz?</h3>
+        <ol>
+          <li>Indítsd el a Minecraftot (verzió: <strong>1.18.2 – 1.21.8</strong>).</li>
+          <li>Kattints a <strong>Többjátékos</strong> (Multiplayer) menüpontra.</li>
+          <li>Add hozzá a szervert az IP-vel: <strong>play.thornempire.hu</strong>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="discord-widget">
+      <h3><i class="fab fa-discord"></i> Csatlakozz Discord közösségünkhöz!</h3>
+      <p>Maradj naprakész az eseményekről, és ismerkedj más játékosokkal</p>
+      <a href="https://dc.thornempire.hu" class="discord-btn">
+        <i class="fab fa-discord"></i> Discord Csatlakozás
+      </a>
+    </div>
+  </section>
+
+  <section id="eotw">
+
+    <div class="section-title">
+      <h2>Előző EOTW Nyertesek</h2>
+      <p>A múltbeli győztesek, akik bebizonyították, hogy ők a legjobbak</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('top1.png'); background-color: #3498db;"></div>
+        <div class="member-info">
+          <h3>Top1: ThornHoditok</h3>
+          <span class="member-role">EOTW Győztesek</span>
+          <p>Legjobb stratégia és csapatmunka</p>
         </div>
-    </section>
-
-    <section id="csatlakozas" class="section-bg">
-        <div class="section-title">
-            <h2>Csatlakozás a szerverhez</h2>
-            <p>Kövesd az alábbi lépéseket, hogy csatlakozhass a ThornEmpire közösségéhez</p>
+      </div>
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('eotw-playerlist.jpg'); background-color: #7f8c8d;">
         </div>
-        <div class="join-container">
-            <div class="server-info">
-                <div class="info-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Szerver IP</h3>
-                    <p>play.thornempire.hu</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-code-branch"></i>
-                    <h3>Verzió</h3>
-                    <p>1.18.2 – 1.21.8</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Játékosok</h3>
-                    <p><span id="serverPlayerCount">0</span>/80</p>
-                </div>
-            </div>
-            <div class="copy-ip">
-                <div class="ip-box">
-                    <i class="fas fa-copy"></i>
-                    <span>play.thornempire.hu</span>
-                </div>
-                <button class="copy-btn" id="copyBtn">
-                    <i class="fas fa-copy"></i> Másolás
-                </button>
-            </div>
-
-            <div class="steps-container">
-                <h3>Hogyan csatlakozz?</h3>
-                <ol>
-                    <li>Indítsd el a Minecraftot (verzió: <strong>1.18.2 – 1.21.8</strong>).</li>
-                    <li>Kattints a <strong>Többjátékos</strong> (Multiplayer) menüpontra.</li>
-                    <li>Add hozzá a szervert az IP-vel: <strong>play.thornempire.hu</strong>.</li>
-                </ol>
-            </div>
+        <div class="member-info">
+          <h3>Top2: SolarBanda</h3>
+          <span class="member-role">2. helyezett</span>
+          <p>Kiváló harcosok, erős védelem</p>
         </div>
-
-        <div class="discord-widget">
-            <h3><i class="fab fa-discord"></i> Csatlakozz Discord közösségünkhöz!</h3>
-            <p>Maradj naprakész az eseményekről, és ismerkedj más játékosokkal</p>
-            <a href="https://dc.thornempire.hu" class="discord-btn">
-                <i class="fab fa-discord"></i> Discord Csatlakozás
-            </a>
+      </div>
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('eotw-playerlist.jpg'); background-color: #f39c12;">
         </div>
-    </section>
-
-    <section id="eotw">
-
-        <div class="section-title">
-            <h2>Előző EOTW Nyertesek</h2>
-            <p>A múltbeli győztesek, akik bebizonyították, hogy ők a legjobbak</p>
+        <div class="member-info">
+          <h3>Top3: Zippo</h3>
+          <span class="member-role">3. helyezett</span>
+          <p>Meglepő taktikák, gyors cselekvés</p>
         </div>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="member-image" style="background-image: url('top1.png'); background-color: #3498db;"></div>
-                <div class="member-info">
-                    <h3>Top1: ThornHoditok</h3>
-                    <span class="member-role">EOTW Győztesek</span>
-                    <p>Legjobb stratégia és csapatmunka</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="member-image"
-                    style="background-image: url('eotw-playerlist.jpg'); background-color: #7f8c8d;"></div>
-                <div class="member-info">
-                    <h3>Top2: SolarBanda</h3>
-                    <span class="member-role">2. helyezett</span>
-                    <p>Kiváló harcosok, erős védelem</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="member-image"
-                    style="background-image: url('eotw-playerlist.jpg'); background-color: #f39c12;"></div>
-                <div class="member-info">
-                    <h3>Top3: Zippo</h3>
-                    <span class="member-role">3. helyezett</span>
-                    <p>Meglepő taktikák, gyors cselekvés</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="csapattagok" class="section-bg">
-        <div class="section-title">
-            <h2>Csapatunk</h2>
-            <p>Ismerd meg a szerver mögött álló csapatot.</p>
+  <section id="csapattagok" class="section-bg">
+    <div class="section-title">
+      <h2>Csapatunk</h2>
+      <p>Ismerd meg a szerver mögött álló csapatot.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('zsolt.png'); background-color: #3498db;"></div>
+        <div class="member-info">
+          <h3>Zsoltih_</h3>
+          <span class="member-role">Tulajdonos</span>
+          <p>A szerver alapítója és fő fejlesztője</p>
+          <div class="member-social">
+            <a href="https://discord.gg/q5XVSZsDxA"><i class="fab fa-discord"></i></a>
+          </div>
         </div>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="member-image" style="background-image: url('zsolt.png'); background-color: #3498db;"></div>
-                <div class="member-info">
-                    <h3>Zsoltih_</h3>
-                    <span class="member-role">Tulajdonos</span>
-                    <p>A szerver alapítója és fő fejlesztője</p>
-                    <div class="member-social">
-                        <a href="https://discord.gg/q5XVSZsDxA"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-member">
-                <div class="member-image" style="background-image: url('sokaf.png'); background-color: #9b59b6;"></div>
-                <div class="member-info">
-                    <h3>Sokaf20</h3>
-                    <span class="member-role">Manager</span>
-                    <p>Kommunikáció és közösségépítés</p>
-                    <div class="member-social">
-                        <a href="https://discord.gg/q5XVSZsDxA"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('sokaf.png'); background-color: #9b59b6;"></div>
+        <div class="member-info">
+          <h3>Sokaf20</h3>
+          <span class="member-role">Manager</span>
+          <p>Kommunikáció és közösségépítés</p>
+          <div class="member-social">
+            <a href="https://discord.gg/q5XVSZsDxA"><i class="fab fa-discord"></i></a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="hirek">
-        <div class="section-title">
-            <h2>Legfrissebb Hírek</h2>
-            <p>Maradj naprakész a szerver legújabb fejlesztéseivel és eseményeivel kapcsolatban</p>
+  <section id="hirek">
+    <div class="section-title">
+      <h2>Legfrissebb Hírek</h2>
+      <p>Maradj naprakész a szerver legújabb fejlesztéseivel és eseményeivel kapcsolatban</p>
+    </div>
+    <div class="news-container">
+      <div class="news-card">
+        <div class="news-image" style="background-image: url('bg.png'); background-color: #3498db;">
+          <div class="news-date"><i class="fas fa-calendar"></i> 2025.08.09 17:00</div>
         </div>
-        <div class="news-container">
-            <div class="news-card">
-                <div class="news-image" style="background-image: url('bg.png'); background-color: #3498db;">
-                    <div class="news-date"><i class="fas fa-calendar"></i> 2025.08.09 17:00</div>
-                </div>
-                <div class="news-content">
-                    <h3>SOTW - Új szezon kezdődik!</h3>
-                    <p>SOTW 2025.08.09. 17:00-kor indul! Új kezdet vár mindannyiótokra. Ne maradj le a nagy indításról!
-                        Készülj fel az új kihívásokra és építsd fel klánodat!</p>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-image" style="background-image: url('eotw.jpg'); background-color: #e74c3c;">
-                    <div class="news-date"><i class="fas fa-calendar"></i> 2025.08.08 17:00</div>
-                </div>
-                <div class="news-content">
-                    <h3>EOTW - Szezonzáró esemény</h3>
-                    <p>EOTW 2025.08.08. 17:00-kor indul! Az aktuális season végére készülünk. Ne maradj le! Gyűjtsd a
-                        csapatodat és szerezd meg a győzelmet!</p>
-                </div>
-            </div>
+        <div class="news-content">
+          <h3>SOTW - Új szezon kezdődik!</h3>
+          <p>SOTW 2025.08.09. 17:00-kor indul! Új kezdet vár mindannyiótokra. Ne maradj le a nagy indításról!
+            Készülj fel az új kihívásokra és építsd fel klánodat!</p>
         </div>
-    </section>
-
-    <section id="faq" class="section-bg">
-        <div class="section-title">
-            <h2>Gyakran Ismételt Kérdések</h2>
-            <p>Itt megtalálod a leggyakrabban feltett kérdéseket és a válaszokat rájuk</p>
+      </div>
+      <div class="news-card">
+        <div class="news-image" style="background-image: url('eotw.jpg'); background-color: #e74c3c;">
+          <div class="news-date"><i class="fas fa-calendar"></i> 2025.08.08 17:00</div>
         </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">Mik a legfontosabb parancsok a szerveren?</div>
-                <div class="faq-answer">
-                    <p>Hasznos parancsok a szerveren:</p>
-                    <ol>
-                        <li><strong>/spawn</strong> – Visszateleportálás a kezdőhelyre</li>
-                        <li><strong>/bolt</strong> – Bolt menü megnyitása</li>
-                        <li><strong>/koth</strong> – Kotheventhez teleportálás</li>
-                        <li><strong>/tpa [név]</strong> – Kérés más játékoshoz teleportáláshoz</li>
-                        <li><strong>/tpaccept</strong> – Elfogadni egy teleport kérést</li>
-                        <li><strong>/msg [név] [üzenet]</strong> – Privát üzenet küldése</li>
-                        <li><strong>/bal</strong> – Megnézni a pénzed mennyiségét</li>
-                        <li><strong>/rtp</strong> – Véletlenszerű teleportálás a világban</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Milyen verzióval működik a szerver?</div>
-                <div class="faq-answer">
-                    <p>A szerver elérhető a következő verziókkal: <strong>1.18.2 – 1.21.8</strong>. Ajánlott a
-                        legfrissebb verzió használata a legjobb élmény érdekében.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Van Discord szerveretek?</div>
-                <div class="faq-answer">
-                    <p>Igen! Discord szerverünkön minden fontos információt megosztunk, és aktív a közösség. Csatlakozz
-                        itt: <a href="https://dc.thornempire.hu" style="color: var(--primary);">dc.thornempire.hu</a>
-                    </p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Hogyan tudok rangot vásárolni?</div>
-                <div class="faq-answer">
-                    <p>Rangokat a szerveren belüli boltban tudsz vásárolni, vagy weboldalunkon: <a
-                            href="https://bolt.thornempire.hu" style="color: var(--primary);">bolt.thornempire.hu</a>. A
-                        rangok különleges képességekkel és kinézetekkel rendelkeznek.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Mikor van SOTW és EOTW?</div>
-                <div class="faq-answer">
-                    <p>Az SOTW (Start of the World) és EOTW (End of the World) események időpontjait a Discord szerveren
-                        és a weboldalon hirdetjük. Általában havonta van egy teljes ciklus.</p>
-                </div>
-            </div>
+        <div class="news-content">
+          <h3>EOTW - Szezonzáró esemény</h3>
+          <p>EOTW 2025.08.08. 17:00-kor indul! Az aktuális season végére készülünk. Ne maradj le! Gyűjtsd a
+            csapatodat és szerezd meg a győzelmet!</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="szabalyzat">
-        <div class="section-title">
-            <h2>Szerver Szabályzat</h2>
-            <p>Minden játékosnak kötelező betartania az alábbi szabályokat a zökkenőmentes játékélmény érdekében</p>
+  <section id="faq" class="section-bg">
+    <div class="section-title">
+      <h2>Gyakran Ismételt Kérdések</h2>
+      <p>Itt megtalálod a leggyakrabban feltett kérdéseket és a válaszokat rájuk</p>
+    </div>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">Mik a legfontosabb parancsok a szerveren?</div>
+        <div class="faq-answer">
+          <p>Hasznos parancsok a szerveren:</p>
+          <ol>
+            <li><strong>/spawn</strong> – Visszateleportálás a kezdőhelyre</li>
+            <li><strong>/bolt</strong> – Bolt menü megnyitása</li>
+            <li><strong>/koth</strong> – Kotheventhez teleportálás</li>
+            <li><strong>/tpa [név]</strong> – Kérés más játékoshoz teleportáláshoz</li>
+            <li><strong>/tpaccept</strong> – Elfogadni egy teleport kérést</li>
+            <li><strong>/msg [név] [üzenet]</strong> – Privát üzenet küldése</li>
+            <li><strong>/bal</strong> – Megnézni a pénzed mennyiségét</li>
+            <li><strong>/rtp</strong> – Véletlenszerű teleportálás a világban</li>
+          </ol>
         </div>
-        <div class="rules-container">
-            <h2><span class="emoji">👑</span> <strong>THORNEMPIRE SZABÁLYZAT</strong></h2>
-            <p>Tisztelt játékosok! Kérem olvassák el ezt a szabályzatot. A szabályzat nem ismerete <strong>NEM</strong>
-                mentesít a büntetés alól!</p>
-
-            <h3><span class="emoji">🛡️</span> DISCORD SZERVER SZABÁLYZATA</h3>
-            <ul class="rules-list">
-                <li>Tartsd tiszteletben a többi tagot, moderátorokat és adminokat.</li>
-                <li class="danger">Tilos a sértegetés, zaklatás, rasszizmus, szexizmus vagy bármilyen más
-                    gyűlöletkeltés!</li>
-                <li>Tilos a spamelés, floodolás és felesleges említések!</li>
-                <li>Saját vagy mások szerverének, termékeinek reklámozása csak admin engedéllyel lehetséges!</li>
-                <li>Tartsd tiszteletben a többieket a hangcsatornákban.</li>
-                <li>Tilos a zajkeltés, zenelejátszó botok felesleges használata vagy mások zavarása!</li>
-                <li class="warning">Tilos obszcén, erőszakos vagy illegális tartalmak megosztása.</li>
-                <li>Maradj a szerver témájánál, és a megfelelő csatornákban oszd meg a tartalmaidat!</li>
-            </ul>
-
-            <h3><span class="emoji">🎮</span> MINECRAFT SZERVER SZABÁLYZATA</h3>
-            <ul class="rules-list">
-                <li class="danger">Tilos a csalás, macrók vagy bármilyen más külső program használata.</li>
-                <li>Tartsd tiszteletben más játékosokat, és ne használd ki a hibákat (bugok, glitch-ek).</li>
-                <li>Tilos a politikai vagy vallási témák említése, viták indítása!</li>
-                <li>Maximum a <strong>18 CPS</strong> (ha ezt eléred, akár azonnali bannal járhat).</li>
-                <li>Ne spammelj, és kerüld a provokáló, gyűlölködő vagy trágár nyelvezetet.</li>
-                <li>Kerüld a politikai és vallási témákat a chatben!</li>
-                <li>Kívülről tilos a bánya szedése! (szankció jár érte)</li>
-                <li>Tilos a szerver gazdaságának felborítása (például piac manipuláció).</li>
-            </ul>
-
-            <h3><span class="emoji">⚖️</span> MODERÁTOROK/ADMINOK DÖNTÉSEI</h3>
-            <p>Az adminok és moderátorok döntései véglegesek. Ha hibát találsz, jelezd egy adminnak, ne használd ki.
-                A szabályok megszegése szankciókat von maga után, mint például figyelmeztetés, ideiglenes vagy végleges
-                kitiltás.
-                A célunk egy barátságos és tisztességes közösség kialakítása, ezért kérjük, hogy tartsd be a
-                szabályokat!</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Milyen verzióval működik a szerver?</div>
+        <div class="faq-answer">
+          <p>A szerver elérhető a következő verziókkal: <strong>1.18.2 – 1.21.8</strong>. Ajánlott a
+            legfrissebb verzió használata a legjobb élmény érdekében.</p>
         </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>ThornEmpire</h3>
-                <p>A legjobb magyar Minecraft közösség, ahol mindenki megtalálja a számítását. Csatlakozz te is!</p>
-                <div class="footer-social">
-                    <a href="https://dc.thornempire.hu"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Gyors linkek</h3>
-                <ul class="footer-links">
-                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Kezdőlap</a></li>
-                    <li><a href="#csatlakozas"><i class="fas fa-chevron-right"></i> Csatlakozás</a></li>
-                    <li><a href="#hirek"><i class="fas fa-chevron-right"></i> Hírek</a></li>
-                    <li><a href="#szabalyzat"><i class="fas fa-chevron-right"></i> Szabályzat</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Segítség</h3>
-                <ul class="footer-links">
-                    <li><a href="#faq"><i class="fas fa-chevron-right"></i> Gyakran Ismételt Kérdések</a></li>
-                    <li><a href="https://bolt.thornempire.hu"><i class="fas fa-chevron-right"></i> Bolt</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Szerver információk</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-server"></i> play.thornempire.hu</a></li>
-                    <li><a href="#"><i class="fas fa-code-branch"></i> 1.18.2 – 1.21.8</a></li>
-                    <li><a href="#"><i class="fas fa-clock"></i> 0/24 Online</a></li>
-                </ul>
-            </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Van Discord szerveretek?</div>
+        <div class="faq-answer">
+          <p>Igen! Discord szerverünkön minden fontos információt megosztunk, és aktív a közösség. Csatlakozz
+            itt: <a href="https://dc.thornempire.hu" style="color: var(--primary);">dc.thornempire.hu</a>
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Aronnhu. Minden jog fenntartva. | <a href="jogi">Jogi nyilatkozat</a></p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Hogyan tudok rangot vásárolni?</div>
+        <div class="faq-answer">
+          <p>Rangokat a szerveren belüli boltban tudsz vásárolni, vagy weboldalunkon: <a
+              href="https://bolt.thornempire.hu" style="color: var(--primary);">bolt.thornempire.hu</a>. A
+            rangok különleges képességekkel és kinézetekkel rendelkeznek.</p>
         </div>
-    </footer>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Mikor van SOTW és EOTW?</div>
+        <div class="faq-answer">
+          <p>Az SOTW (Start of the World) és EOTW (End of the World) események időpontjait a Discord szerveren
+            és a weboldalon hirdetjük. Általában havonta van egy teljes ciklus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
+  <section id="szabalyzat">
+    <div class="section-title">
+      <h2>Szerver Szabályzat</h2>
+      <p>Minden játékosnak kötelező betartania az alábbi szabályokat a zökkenőmentes játékélmény érdekében</p>
+    </div>
+    <div class="rules-container">
+      <h2><span class="emoji">👑</span> <strong>THORNEMPIRE SZABÁLYZAT</strong></h2>
+      <p>Tisztelt játékosok! Kérem olvassák el ezt a szabályzatot. A szabályzat nem ismerete <strong>NEM</strong>
+        mentesít a büntetés alól!</p>
 
-                document.addEventListener('contextmenu', event => event.preventDefault());
+      <h3><span class="emoji">🛡️</span> DISCORD SZERVER SZABÁLYZATA</h3>
+      <ul class="rules-list">
+        <li>Tartsd tiszteletben a többi tagot, moderátorokat és adminokat.</li>
+        <li class="danger">Tilos a sértegetés, zaklatás, rasszizmus, szexizmus vagy bármilyen más
+          gyűlöletkeltés!</li>
+        <li>Tilos a spamelés, floodolás és felesleges említések!</li>
+        <li>Saját vagy mások szerverének, termékeinek reklámozása csak admin engedéllyel lehetséges!</li>
+        <li>Tartsd tiszteletben a többieket a hangcsatornákban.</li>
+        <li>Tilos a zajkeltés, zenelejátszó botok felesleges használata vagy mások zavarása!</li>
+        <li class="warning">Tilos obszcén, erőszakos vagy illegális tartalmak megosztása.</li>
+        <li>Maradj a szerver témájánál, és a megfelelő csatornákban oszd meg a tartalmaidat!</li>
+      </ul>
 
-        document.onkeydown = function (e) {
-            if (
-                e.keyCode === 123 ||
-                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
-                (e.ctrlKey && e.keyCode === 85)
-            ) {
-                return false;
+      <h3><span class="emoji">🎮</span> MINECRAFT SZERVER SZABÁLYZATA</h3>
+      <ul class="rules-list">
+        <li class="danger">Tilos a csalás, macrók vagy bármilyen más külső program használata.</li>
+        <li>Tartsd tiszteletben más játékosokat, és ne használd ki a hibákat (bugok, glitch-ek).</li>
+        <li>Tilos a politikai vagy vallási témák említése, viták indítása!</li>
+        <li>Maximum a <strong>18 CPS</strong> (ha ezt eléred, akár azonnali bannal járhat).</li>
+        <li>Ne spammelj, és kerüld a provokáló, gyűlölködő vagy trágár nyelvezetet.</li>
+        <li>Kerüld a politikai és vallási témákat a chatben!</li>
+        <li>Kívülről tilos a bánya szedése! (szankció jár érte)</li>
+        <li>Tilos a szerver gazdaságának felborítása (például piac manipuláció).</li>
+      </ul>
+
+      <h3><span class="emoji">⚖️</span> MODERÁTOROK/ADMINOK DÖNTÉSEI</h3>
+      <p>Az adminok és moderátorok döntései véglegesek. Ha hibát találsz, jelezd egy adminnak, ne használd ki.
+        A szabályok megszegése szankciókat von maga után, mint például figyelmeztetés, ideiglenes vagy végleges
+        kitiltás.
+        A célunk egy barátságos és tisztességes közösség kialakítása, ezért kérjük, hogy tartsd be a
+        szabályokat!</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>ThornEmpire</h3>
+        <p>A legjobb magyar Minecraft közösség, ahol mindenki megtalálja a számítását. Csatlakozz te is!</p>
+        <div class="footer-social">
+          <a href="https://dc.thornempire.hu"><i class="fab fa-discord"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Gyors linkek</h3>
+        <ul class="footer-links">
+          <li><a href="#home"><i class="fas fa-chevron-right"></i> Kezdőlap</a></li>
+          <li><a href="#csatlakozas"><i class="fas fa-chevron-right"></i> Csatlakozás</a></li>
+          <li><a href="#hirek"><i class="fas fa-chevron-right"></i> Hírek</a></li>
+          <li><a href="#szabalyzat"><i class="fas fa-chevron-right"></i> Szabályzat</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Segítség</h3>
+        <ul class="footer-links">
+          <li><a href="#faq"><i class="fas fa-chevron-right"></i> Gyakran Ismételt Kérdések</a></li>
+          <li><a href="https://bolt.thornempire.hu"><i class="fas fa-chevron-right"></i> Bolt</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Szerver információk</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-server"></i> play.thornempire.hu</a></li>
+          <li><a href="#"><i class="fas fa-code-branch"></i> 1.18.2 – 1.21.8</a></li>
+          <li><a href="#"><i class="fas fa-clock"></i> 0/24 Online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        &copy; 2025 Aronnhu. Minden jog fenntartva. |
+        <a href="Felhasználási feltételek.pdf" target="_blank">Felhasználási feltételek</a> |
+        <a href="Szerzői jog.pdf" target="_blank">Szerzői jog</a>
+      </p>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    document.onkeydown = function (e) {
+      if (
+        e.keyCode === 123 ||
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+        (e.ctrlKey && e.keyCode === 85)
+      ) {
+        return false;
+      }
+    };
+
+    console.log = function () { };
+    console.warn = function () { };
+    console.error = function () { };
+
+    (function blockDevTools() {
+      setInterval(function () {
+        const start = new Date();
+        debugger;
+        if (new Date() - start > 100) {
+          window.location.href = "about:blank";
+        }
+      }, 1000);
+    })();
+
+    setInterval(function () {
+      if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
+        window.location.href = "about:blank";
+      }
+    }, 1000);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mainNav = document.getElementById('mainNav');
+
+      if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mainNav.classList.toggle('active');
+          mobileMenuBtn.innerHTML = mainNav.classList.contains('active')
+            ? '<i class="fas fa-times"></i>'
+            : '<i class="fas fa-bars"></i>';
+        });
+      }
+
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+          }
+        });
+      });
+
+      const header = document.querySelector('header');
+      if (header) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      }
+
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+          const item = question.parentElement;
+          item.classList.toggle('active');
+        });
+      });
+
+      const copyBtn = document.getElementById('copyBtn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText('play.thornempire.hu').then(() => {
+            copyBtn.classList.add('copied');
+            setTimeout(() => {
+              copyBtn.classList.remove('copied');
+            }, 2000);
+          }).catch(err => {
+            console.error('Hiba a másolás során:', err);
+          });
+        });
+      }
+
+      const scrollDown = document.getElementById('scrollDown');
+      if (scrollDown) {
+        scrollDown.addEventListener('click', () => {
+          window.scrollTo({
+            top: document.getElementById('csatlakozas').offsetTop,
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      });
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+
+      async function updatePlayerCount() {
+        try {
+          const response = await fetch("https://api.mcsrvstat.us/3/play.thornempire.hu");
+          const data = await response.json();
+
+          if (data && data.players) {
+            const playerCount = data.players.online || 0;
+            document.getElementById('playerCount').textContent = playerCount;
+            document.getElementById('serverPlayerCount').textContent = playerCount;
+          } else {
+            document.getElementById('playerCount').textContent = "0";
+            document.getElementById('serverPlayerCount').textContent = "0";
+          }
+        } catch (error) {
+          console.error("Nem sikerült lekérdezni a szerver adatait:", error);
+          document.getElementById('playerCount').textContent = "Hiba";
+          document.getElementById('serverPlayerCount').textContent = "Hiba";
+        }
+      }
+
+      updateCountdown();
+      updatePlayerCount();
+      setInterval(updateCountdown, 1000);
+      setInterval(updatePlayerCount, 5000);
+    });
+
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#3498db"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 2,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#3498db",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": true,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 0.5
             }
-        };
-
-        console.log = function () { };
-        console.warn = function () { };
-        console.error = function () { };
-
-        (function blockDevTools() {
-            setInterval(function () {
-                const start = new Date();
-                debugger;
-                if (new Date() - start > 100) {
-                    window.location.href = "about:blank";
-                }
-            }, 1000);
-        })();
-
-        setInterval(function () {
-            if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
-                window.location.href = "about:blank";
-            }
-        }, 1000);
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mainNav = document.getElementById('mainNav');
-
-            if (mobileMenuBtn && mainNav) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mainNav.classList.toggle('active');
-                    mobileMenuBtn.innerHTML = mainNav.classList.contains('active')
-                        ? '<i class="fas fa-times"></i>'
-                        : '<i class="fas fa-bars"></i>';
-                });
-            }
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                });
-            });
-
-            const header = document.querySelector('header');
-            if (header) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                });
-            }
-
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', () => {
-                    const item = question.parentElement;
-                    item.classList.toggle('active');
-                });
-            });
-
-            const copyBtn = document.getElementById('copyBtn');
-            if (copyBtn) {
-                copyBtn.addEventListener('click', () => {
-                    navigator.clipboard.writeText('play.thornempire.hu').then(() => {
-                        copyBtn.classList.add('copied');
-                        setTimeout(() => {
-                            copyBtn.classList.remove('copied');
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('Hiba a másolás során:', err);
-                    });
-                });
-            }
-
-            const scrollDown = document.getElementById('scrollDown');
-            if (scrollDown) {
-                scrollDown.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: document.getElementById('csatlakozas').offsetTop,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            });
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            async function updatePlayerCount() {
-                try {
-                    const response = await fetch("https://api.mcsrvstat.us/3/play.thornempire.hu");
-                    const data = await response.json();
-
-                    if (data && data.players) {
-                        const playerCount = data.players.online || 0;
-                        document.getElementById('playerCount').textContent = playerCount;
-                        document.getElementById('serverPlayerCount').textContent = playerCount;
-                    } else {
-                        document.getElementById('playerCount').textContent = "0";
-                        document.getElementById('serverPlayerCount').textContent = "0";
-                    }
-                } catch (error) {
-                    console.error("Nem sikerült lekérdezni a szerver adatait:", error);
-                    document.getElementById('playerCount').textContent = "Hiba";
-                    document.getElementById('serverPlayerCount').textContent = "Hiba";
-                }
-            }
-
-            updateCountdown();
-            updatePlayerCount();
-            setInterval(updateCountdown, 1000);
-            setInterval(updatePlayerCount, 5000);
-            });
-
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#3498db"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#3498db",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 1,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 0.5
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-    </script>
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
 
 </body>
 
